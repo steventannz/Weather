@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class WeatherListActivityFragment extends Fragment {
+public class WeatherListFragment extends Fragment {
 
-    public WeatherListActivityFragment() {
+    public WeatherListFragment() {
     }
 
     @Override
