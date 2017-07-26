@@ -8,13 +8,15 @@ import dagger.android.AndroidInjectionModule;
 import steven.tan.weather.app.WeatherApplication;
 import steven.tan.weather.modules.AppModule;
 import steven.tan.weather.modules.BuildersModule;
+import steven.tan.weather.modules.RetrofitModule;
+import steven.tan.weather.modules.ServicesModule;
 
 /**
  * Created by steventan on 26/07/17.
  */
 
 @Singleton
-@Component(modules = {AndroidInjectionModule.class, AppModule.class, BuildersModule.class})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class, BuildersModule.class, ServicesModule.class, RetrofitModule.class})
 public interface AppComponent {
 
     @Component.Builder
