@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
-import steven.tan.weather.WeatherListFragment;
+import steven.tan.weather.ui.weatherlist.WeatherListFragment;
 import steven.tan.weather.component.WeatherListSubComponent;
 
 /**

@@ -2,7 +2,7 @@ package steven.tan.weather.component;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
-import steven.tan.weather.WeatherListFragment;
+import steven.tan.weather.ui.weatherlist.WeatherListFragment;
 import steven.tan.weather.modules.WeatherListModule;
 
 /**

@@ -1,4 +1,4 @@
-package steven.tan.weather;
+package steven.tan.weather.ui.weatherlist;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
+import steven.tan.weather.R;
 import steven.tan.weather.presenter.WeatherListPresenter;
 import steven.tan.weather.view.WeatherListView;
 

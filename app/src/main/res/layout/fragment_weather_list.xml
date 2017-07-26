@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="steven.tan.weather.WeatherListFragment"
+    tools:context="steven.tan.weather.ui.weatherlist.WeatherListFragment"
     tools:showIn="@layout/activity_weather_list">
 
 </android.support.constraint.ConstraintLayout>

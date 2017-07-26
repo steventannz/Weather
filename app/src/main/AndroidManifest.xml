@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".WeatherListActivity"
+            android:name=".ui.weatherlist.WeatherListActivity"
             android:label="@string/title_activity_weather_list"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

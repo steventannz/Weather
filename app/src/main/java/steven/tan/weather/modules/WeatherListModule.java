@@ -3,7 +3,7 @@ package steven.tan.weather.modules;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
-import steven.tan.weather.WeatherListFragment;
+import steven.tan.weather.ui.weatherlist.WeatherListFragment;
 import steven.tan.weather.presenter.WeatherListPresenter;
 import steven.tan.weather.view.WeatherListView;
 
