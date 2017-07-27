@@ -26,6 +26,18 @@ public class WeatherCondition implements Parcelable {
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getMain() {
+        return main;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public int describeContents() {
         return 0;

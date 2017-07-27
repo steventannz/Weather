@@ -20,6 +20,10 @@ public class Forecast implements Parcelable {
         this.weather = weather;
     }
 
+    public List<Weather> getWeather() {
+        return weather;
+    }
+
     @Override
     public int describeContents() {
         return 0;

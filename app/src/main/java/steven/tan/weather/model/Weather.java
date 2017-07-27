@@ -37,6 +37,26 @@ public class Weather implements Parcelable {
         this.weatherCondition = weatherCondition;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
+    public double getWindDirection() {
+        return windDirection;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public List<WeatherCondition> getWeatherCondition() {
+        return weatherCondition;
+    }
+
     @Override
     public int describeContents() {
         return 0;

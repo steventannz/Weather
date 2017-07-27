@@ -22,6 +22,14 @@ public class Temperature implements Parcelable {
         this.min = min;
     }
 
+    public double getMax() {
+        return max;
+    }
+
+    public double getMin() {
+        return min;
+    }
+
     @Override
     public int describeContents() {
         return 0;
