@@ -11,6 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import steven.tan.weather.R;
+import steven.tan.weather.model.Temperature;
 import steven.tan.weather.model.Weather;
 
 /**
@@ -36,7 +37,12 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.locationText.setText(weatherList.get(position).getDate().toString());
+        Weather weather = weatherList.get(position);
+        holder.locationText.setText(weather.getDate().toString());
+        Temperature temperature = weather.getTemperature();
+        holder.temperatureText.setText(holder.temperatureText.getResources()
+                .getString(R.string.max_min_temperature, temperature.getMin(), temperature.getMax()));
+        holder.weatherConditionText.setText(weather.getWeatherCondition().get(0).getDescription());
     }
 
 
@@ -47,8 +53,15 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.location_text)
+        @BindView(R.id.date)
         TextView locationText;
+
+        @BindView(R.id.temperature)
+        TextView temperatureText;
+
+        @BindView(R.id.weather_condition)
+        TextView weatherConditionText;
+
 
         ItemViewHolder(View itemView) {
             super(itemView);

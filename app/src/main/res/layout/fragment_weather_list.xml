@@ -6,18 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="steven.tan.weather.ui.weatherlist.WeatherListFragment"
-    tools:showIn="@layout/activity_weather_list">
+    tools:showIn="@layout/activity_weather_list"
+    android:background="@color/background_grey">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:queryHint="Enter a city"
-        app:iconifiedByDefault="false" />
+        app:iconifiedByDefault="false"
+        android:layout_margin="@dimen/layout_padding"
+        android:background="@color/white"
+        app:queryBackground="@color/transparent"
+        android:elevation="2dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/forecast_recycler"
+        android:paddingTop="@dimen/layout_padding_half"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

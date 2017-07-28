@@ -15,6 +15,6 @@ public interface WeatherService {
     @GET("weather/")
     Observable<WeatherLocation> loadWeather(@Query("q") String location);
 
-    @GET("forecast/daily")
+    @GET("forecast/daily?units=metric")
     Observable<Forecast> loadForecast(@Query("id") int id);
 }

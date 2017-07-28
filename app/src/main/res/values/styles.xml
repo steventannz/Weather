@@ -17,4 +17,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="weather_card_style">
+        <item name="android:paddingStart">@dimen/layout_padding</item>
+        <item name="android:paddingEnd">@dimen/layout_padding</item>
+        <item name="android:paddingTop">@dimen/layout_padding_extra</item>
+        <item name="android:paddingBottom">@dimen/layout_padding_extra</item>
+    </style>
+
 </resources>
