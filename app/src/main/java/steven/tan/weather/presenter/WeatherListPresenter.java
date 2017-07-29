@@ -4,7 +4,6 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import steven.tan.weather.interactor.GetForecastInteractor;
 import steven.tan.weather.model.Forecast;
-import steven.tan.weather.model.Weather;
 import steven.tan.weather.view.WeatherListView;
 
 /**
@@ -57,7 +56,7 @@ public class WeatherListPresenter implements Observer<Forecast> {
 
     }
 
-    public void onWeatherCardClicked(Weather weather) {
-        view.showWeatherDetail(forecast.getCity().getName(), weather);
+    public void onWeatherCardClicked(int position) {
+        view.showWeatherDetail(forecast.getCity().getName(), forecast.getWeather().get(position));
     }
 }

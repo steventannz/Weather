@@ -98,8 +98,8 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
     }
 
     @Override
-    public void onWeatherCardClicked(Weather weather) {
-        presenter.onWeatherCardClicked(weather);
+    public void onWeatherCardClicked(int position) {
+        presenter.onWeatherCardClicked(position);
     }
 
     public interface WeatherDetailClickedListener {

@@ -44,7 +44,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         Context context = holder.itemView.getContext();
 
         Weather weather = weatherList.get(position);
-        holder.weatherCard.setOnClickListener(v -> listener.onWeatherCardClicked(weather));
+        holder.weatherCard.setOnClickListener(v -> listener.onWeatherCardClicked(position));
 
         String formattedDate = DateUtils.formatDateTime(context,
                 weather.getDate().getTime(), DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE);
@@ -85,6 +85,6 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     }
 
     public interface OnWeatherCardClickedListener {
-        void onWeatherCardClicked(Weather date);
+        void onWeatherCardClicked(int position);
     }
 }
