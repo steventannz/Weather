@@ -1,6 +1,8 @@
 package steven.tan.weather.ui.weatherlist;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,12 +41,19 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
+        Context context = holder.itemView.getContext();
+
         Weather weather = weatherList.get(position);
         holder.weatherCard.setOnClickListener(v -> listener.onWeatherCardClicked(weather));
-        holder.locationText.setText(weather.getDate().toString());
+
+        String formattedDate = DateUtils.formatDateTime(context,
+                weather.getDate().getTime(), DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE);
+        holder.dateText.setText(formattedDate);
+
         Temperature temperature = weather.getTemperature();
-        holder.temperatureText.setText(holder.temperatureText.getResources()
-                .getString(R.string.max_min_temperature, temperature.getMin(), temperature.getMax()));
+        String minMaxTemp = context.getString(R.string.min_max_temperature, temperature.getMin(), temperature.getMax());
+        holder.temperatureText.setText(minMaxTemp);
+
         holder.weatherConditionText.setText(weather.getWeatherCondition().get(0).getDescription());
     }
 
@@ -60,7 +69,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         View weatherCard;
 
         @BindView(R.id.date)
-        TextView locationText;
+        TextView dateText;
 
         @BindView(R.id.temperature)
         TextView temperatureText;
