@@ -23,10 +23,9 @@ import steven.tan.weather.model.Weather;
 import steven.tan.weather.presenter.WeatherListPresenter;
 import steven.tan.weather.view.WeatherListView;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class WeatherListFragment extends Fragment implements WeatherListView, SearchView.OnQueryTextListener, WeatherListAdapter.OnWeatherCardClickedListener {
+
+public class WeatherListFragment extends Fragment implements WeatherListView,
+        SearchView.OnQueryTextListener, WeatherListAdapter.OnWeatherCardClickedListener {
 
     @Inject
     WeatherListPresenter presenter;
@@ -36,6 +35,18 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
 
     @BindView(R.id.forecast_recycler)
     RecyclerView forecastRecyclerView;
+
+    @BindView(R.id.progress)
+    View progressBar;
+
+    @BindView(R.id.retry)
+    View retryButton;
+
+    @BindView(R.id.error_layer)
+    View errorLayer;
+
+    @BindView(R.id.content)
+    View contentLayer;
 
     private WeatherDetailClickedListener listener;
 
@@ -65,6 +76,7 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
 
         searchView.setOnQueryTextListener(this);
         forecastRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        retryButton.setOnClickListener(v -> presenter.onRetryClicked());
     }
 
     @Override
@@ -91,10 +103,39 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
 
     @Override
     public void showWeatherDetail(String location, Weather weather) {
-//        startActivity(WeatherDetailActivity.launchIntent(getContext(), location, date));
-
-
         listener.onWeatherDetailClicked(location, weather);
+    }
+
+    @Override
+    public void showList() {
+        forecastRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideList() {
+        forecastRecyclerView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void startLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void stopLoading() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        contentLayer.setVisibility(View.GONE);
+        errorLayer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideError() {
+        errorLayer.setVisibility(View.GONE);
+        contentLayer.setVisibility(View.VISIBLE);
     }
 
     @Override

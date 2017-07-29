@@ -14,6 +14,7 @@ import steven.tan.weather.model.Forecast;
 import steven.tan.weather.model.Weather;
 import steven.tan.weather.view.WeatherListView;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -43,6 +44,9 @@ public class WeatherListPresenterTest {
     @Mock
     List<Weather> weatherList;
 
+    @Mock
+    Throwable throwable;
+
     @Before
     public void setup() {
         presenter = new WeatherListPresenter(view, interactor);
@@ -71,6 +75,57 @@ public class WeatherListPresenterTest {
 
         presenter.onWeatherCardClicked(position);
         verify(view).showWeatherDetail(forecast.getCity().getName(), weather);
+    }
+
+    @Test
+    public void shouldShowLoadingDialogOnQuerySubmitted() {
+        presenter.onQuerySubmitted("Wellington");
+        verify(view).startLoading();
+    }
+
+    @Test
+    public void shouldHideListOnQuerySubmitted() {
+        presenter.onQuerySubmitted("Wellington");
+        verify(view).hideList();
+    }
+
+    @Test
+    public void shouldHideLoadingDialogOnDataRetrieved() {
+        presenter.onComplete();
+        verify(view).stopLoading();
+    }
+
+    @Test
+    public void shouldShowListOnDataRetrieved() {
+        presenter.onComplete();
+        verify(view).showList();
+    }
+
+    @Test
+    public void shouldShowErrorOnLoadFailed() {
+        presenter.onError(throwable);
+        verify(view).showErrorMessage();
+    }
+
+    @Test
+    public void shouldRetryLastQueryAttemptOnRetryClicked() {
+        final String query = "Wellington";
+        presenter.onQuerySubmitted(query);
+        presenter.onRetryClicked();
+        verify(interactor, times(2)).getForecast(query, presenter);
+    }
+
+    @Test
+    public void shouldHideErrorAfterQuerySubmitted() {
+        presenter.onQuerySubmitted("Wellington");
+        verify(view).hideError();
+    }
+
+    @Test
+    public void shouldHideErrorAfterRetry() {
+        presenter.onQuerySubmitted("Wellington");
+        presenter.onRetryClicked();
+        verify(view, times(2)).hideError();
     }
 
 }

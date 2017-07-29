@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="steven.tan.weather.ui.weatherlist.WeatherListFragment"
-    tools:showIn="@layout/activity_weather_list"
-    android:background="@color/background_grey">
+    android:background="@color/background_grey"
+    tools:context="steven.tan.weather.ui.weatherlist.WeatherListFragment">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search_view"
@@ -20,11 +19,48 @@
         app:queryBackground="@color/transparent"
         android:elevation="2dp"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/forecast_recycler"
-        android:paddingTop="@dimen/layout_padding_half"
-        android:clipToPadding="false"
+    <FrameLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/forecast_recycler"
+            android:paddingTop="@dimen/layout_padding_half"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/error_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_padding"
+            android:gravity="center"
+            android:text="@string/generic_error"/>
+
+        <Button
+            android:id="@+id/retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"/>
+
+    </LinearLayout>
 </LinearLayout>

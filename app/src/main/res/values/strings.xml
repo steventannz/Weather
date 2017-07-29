@@ -5,4 +5,6 @@
     <string name="min_max_temperature">%1$.1f° / %2$.1f°</string>
     <string name="title_activity_weather_detail">WeatherDetailActivity</string>
     <string name="enter_a_city">Enter a city</string>
+    <string name="retry">Retry</string>
+    <string name="generic_error">Could not load weather. Please try again</string>
 </resources>

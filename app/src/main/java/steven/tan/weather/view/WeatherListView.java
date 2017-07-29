@@ -12,4 +12,16 @@ public interface WeatherListView {
     void setWeatherForecast(List<Weather> weather);
 
     void showWeatherDetail(String location, Weather weather);
+
+    void showList();
+
+    void hideList();
+
+    void startLoading();
+
+    void stopLoading();
+
+    void showErrorMessage();
+
+    void hideError();
 }

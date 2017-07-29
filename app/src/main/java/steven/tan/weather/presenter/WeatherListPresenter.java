@@ -14,6 +14,7 @@ public class WeatherListPresenter implements Observer<Forecast> {
     private final WeatherListView view;
     private final GetForecastInteractor interactor;
     private Forecast forecast;
+    private String lastQuery;
 
 
     public WeatherListPresenter(WeatherListView view, GetForecastInteractor interactor) {
@@ -26,6 +27,14 @@ public class WeatherListPresenter implements Observer<Forecast> {
     }
 
     public void onQuerySubmitted(String query) {
+        this.lastQuery = query;
+        loadForecast(query);
+    }
+
+    private void loadForecast(String query) {
+        view.hideError();
+        view.hideList();
+        view.startLoading();
         interactor.getForecast(query, this);
     }
 
@@ -48,15 +57,22 @@ public class WeatherListPresenter implements Observer<Forecast> {
 
     @Override
     public void onError(Throwable e) {
-
+        view.showErrorMessage();
     }
 
     @Override
     public void onComplete() {
-
+        view.stopLoading();
+        view.showList();
     }
 
     public void onWeatherCardClicked(int position) {
         view.showWeatherDetail(forecast.getCity().getName(), forecast.getWeather().get(position));
+    }
+
+    public void onRetryClicked() {
+        if (lastQuery != null) {
+            loadForecast(lastQuery);
+        }
     }
 }
