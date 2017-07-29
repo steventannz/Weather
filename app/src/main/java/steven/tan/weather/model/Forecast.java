@@ -13,11 +13,19 @@ import java.util.List;
 
 public class Forecast implements Parcelable {
 
+    @SerializedName("city")
+    private final City city;
+
     @SerializedName("list")
     private final List<Weather> weather;
 
-    public Forecast(List<Weather> weather) {
+    public Forecast(City city, List<Weather> weather) {
+        this.city = city;
         this.weather = weather;
+    }
+
+    public City getCity() {
+        return city;
     }
 
     public List<Weather> getWeather() {
@@ -31,10 +39,12 @@ public class Forecast implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.city, flags);
         dest.writeTypedList(this.weather);
     }
 
     protected Forecast(Parcel in) {
+        this.city = in.readParcelable(City.class.getClassLoader());
         this.weather = in.createTypedArrayList(Weather.CREATOR);
     }
 
@@ -57,18 +67,22 @@ public class Forecast implements Parcelable {
 
         Forecast forecast = (Forecast) o;
 
+        if (city != null ? !city.equals(forecast.city) : forecast.city != null) return false;
         return weather != null ? weather.equals(forecast.weather) : forecast.weather == null;
     }
 
     @Override
     public int hashCode() {
-        return weather != null ? weather.hashCode() : 0;
+        int result = city != null ? city.hashCode() : 0;
+        result = 31 * result + (weather != null ? weather.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Forecast{" +
-                "weather=" + weather +
+                "city=" + city +
+                ", weather=" + weather +
                 '}';
     }
 }

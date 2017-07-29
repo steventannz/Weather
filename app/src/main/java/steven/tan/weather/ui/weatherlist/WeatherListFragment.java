@@ -26,7 +26,7 @@ import steven.tan.weather.view.WeatherListView;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class WeatherListFragment extends Fragment implements WeatherListView, SearchView.OnQueryTextListener {
+public class WeatherListFragment extends Fragment implements WeatherListView, SearchView.OnQueryTextListener, WeatherListAdapter.OnWeatherCardClickedListener {
 
     @Inject
     WeatherListPresenter presenter;
@@ -37,6 +37,8 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
     @BindView(R.id.forecast_recycler)
     RecyclerView forecastRecyclerView;
 
+    private WeatherDetailClickedListener listener;
+
     public WeatherListFragment() {
     }
 
@@ -44,6 +46,10 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
+
+        if (context instanceof WeatherDetailClickedListener) {
+            listener = (WeatherDetailClickedListener) context;
+        }
     }
 
     @Override
@@ -80,6 +86,23 @@ public class WeatherListFragment extends Fragment implements WeatherListView, Se
 
     @Override
     public void setWeatherForecast(List<Weather> weather) {
-        forecastRecyclerView.setAdapter(new WeatherListAdapter(weather));
+        forecastRecyclerView.setAdapter(new WeatherListAdapter(weather, this));
+    }
+
+    @Override
+    public void showWeatherDetail(String location, Weather weather) {
+//        startActivity(WeatherDetailActivity.launchIntent(getContext(), location, date));
+
+
+        listener.onWeatherDetailClicked(location, weather);
+    }
+
+    @Override
+    public void onWeatherCardClicked(Weather weather) {
+        presenter.onWeatherCardClicked(weather);
+    }
+
+    public interface WeatherDetailClickedListener {
+        void onWeatherDetailClicked(String location, Weather weather);
     }
 }

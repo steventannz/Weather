@@ -10,4 +10,6 @@ import steven.tan.weather.model.Weather;
 
 public interface WeatherListView {
     void setWeatherForecast(List<Weather> weather);
+
+    void showWeatherDetail(String location, Weather weather);
 }

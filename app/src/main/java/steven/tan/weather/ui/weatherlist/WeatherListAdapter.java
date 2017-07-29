@@ -21,10 +21,12 @@ import steven.tan.weather.model.Weather;
 public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.ItemViewHolder> {
 
     private final List<Weather> weatherList;
+    private final OnWeatherCardClickedListener listener;
 
-    public WeatherListAdapter(List<Weather> weatherList) {
+    public WeatherListAdapter(List<Weather> weatherList, OnWeatherCardClickedListener listener) {
 
         this.weatherList = weatherList;
+        this.listener = listener;
     }
 
     @Override
@@ -38,6 +40,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Weather weather = weatherList.get(position);
+        holder.weatherCard.setOnClickListener(v -> listener.onWeatherCardClicked(weather));
         holder.locationText.setText(weather.getDate().toString());
         Temperature temperature = weather.getTemperature();
         holder.temperatureText.setText(holder.temperatureText.getResources()
@@ -53,6 +56,9 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.weather_card)
+        View weatherCard;
+
         @BindView(R.id.date)
         TextView locationText;
 
@@ -67,5 +73,9 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnWeatherCardClickedListener {
+        void onWeatherCardClicked(Weather date);
     }
 }

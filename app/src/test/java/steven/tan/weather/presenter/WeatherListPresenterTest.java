@@ -39,7 +39,7 @@ public class WeatherListPresenterTest {
     public void setup() {
         presenter = new WeatherListPresenter(view, interactor);
         weatherList = new ArrayList<>();
-        forecast = new Forecast(weatherList);
+        forecast = new Forecast(city, weatherList);
     }
 
     @Test
