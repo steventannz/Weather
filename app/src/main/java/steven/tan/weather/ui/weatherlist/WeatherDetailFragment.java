@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import steven.tan.weather.R;
+import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 
 /**
@@ -22,10 +23,10 @@ public class WeatherDetailFragment extends Fragment {
     public WeatherDetailFragment() {
     }
 
-    public static WeatherDetailFragment newInstance(String location, Weather weather) {
+    public static WeatherDetailFragment newInstance(City location, Weather weather) {
         WeatherDetailFragment fragment = new WeatherDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_LOCATION, location);
+        bundle.putParcelable(EXTRA_LOCATION, location);
         bundle.putParcelable(EXTRA_WEATHER, weather);
         fragment.setArguments(bundle);
         return fragment;

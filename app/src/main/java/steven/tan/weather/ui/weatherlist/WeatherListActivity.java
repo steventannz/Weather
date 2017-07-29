@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import steven.tan.weather.R;
+import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 
-public class WeatherListActivity extends AppCompatActivity implements WeatherListFragment.WeatherDetailClickedListener {
+public class WeatherListActivity extends AppCompatActivity implements
+        WeatherListFragment.WeatherDetailClickedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,7 @@ public class WeatherListActivity extends AppCompatActivity implements WeatherLis
     }
 
     @Override
-    public void onWeatherDetailClicked(String location, Weather weather) {
+    public void onWeatherDetailClicked(City location, Weather weather) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content, WeatherDetailFragment.newInstance(location, weather))
                 .addToBackStack(null)

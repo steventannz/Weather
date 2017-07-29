@@ -79,7 +79,7 @@ public class WeatherListPresenterTest {
         when(weatherList.get(position)).thenReturn(weather);
 
         presenter.onWeatherCardClicked(position);
-        verify(view).showWeatherDetail(forecast.getCity().getName(), weather);
+        verify(view).showWeatherDetail(forecast.getCity(), weather);
     }
 
     @Test

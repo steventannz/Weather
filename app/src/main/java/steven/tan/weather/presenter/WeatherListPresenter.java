@@ -68,7 +68,7 @@ public class WeatherListPresenter implements Observer<Forecast> {
     }
 
     public void onWeatherCardClicked(int position) {
-        view.showWeatherDetail(forecast.getCity().getName(), forecast.getWeather().get(position));
+        view.showWeatherDetail(forecast.getCity(), forecast.getWeather().get(position));
     }
 
     public void onRetryClicked() {

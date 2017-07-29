@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.AndroidSupportInjection;
 import steven.tan.weather.R;
+import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 import steven.tan.weather.presenter.WeatherListPresenter;
 import steven.tan.weather.view.WeatherListView;
@@ -108,7 +109,7 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     }
 
     @Override
-    public void showWeatherDetail(String location, Weather weather) {
+    public void showWeatherDetail(City location, Weather weather) {
         listener.onWeatherDetailClicked(location, weather);
     }
 
@@ -150,6 +151,6 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     }
 
     public interface WeatherDetailClickedListener {
-        void onWeatherDetailClicked(String location, Weather weather);
+        void onWeatherDetailClicked(City location, Weather weather);
     }
 }

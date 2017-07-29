@@ -2,6 +2,7 @@ package steven.tan.weather.view;
 
 import java.util.List;
 
+import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 
 /**
@@ -11,7 +12,7 @@ import steven.tan.weather.model.Weather;
 public interface WeatherListView {
     void setWeatherForecast(List<Weather> weather);
 
-    void showWeatherDetail(String location, Weather weather);
+    void showWeatherDetail(City location, Weather weather);
 
     void showList();
 
