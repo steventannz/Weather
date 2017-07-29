@@ -8,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
 import steven.tan.weather.interactor.GetForecastInteractor;
 import steven.tan.weather.model.City;
 import steven.tan.weather.model.Forecast;
@@ -47,11 +48,15 @@ public class WeatherListPresenterTest {
     @Mock
     Throwable throwable;
 
+    @Mock
+    Disposable disposable;
+
     @Before
     public void setup() {
         presenter = new WeatherListPresenter(view, interactor);
         when(forecast.getCity()).thenReturn(city);
         when(forecast.getWeather()).thenReturn(weatherList);
+        when(disposable.isDisposed()).thenReturn(false);
     }
 
     @Test
@@ -126,6 +131,13 @@ public class WeatherListPresenterTest {
         presenter.onQuerySubmitted("Wellington");
         presenter.onRetryClicked();
         verify(view, times(2)).hideError();
+    }
+
+    @Test
+    public void shouldCancelRequestOnStop() {
+        presenter.onSubscribe(disposable);
+        presenter.onStop();
+        verify(disposable).dispose();
     }
 
 }

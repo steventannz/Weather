@@ -15,6 +15,7 @@ public class WeatherListPresenter implements Observer<Forecast> {
     private final GetForecastInteractor interactor;
     private Forecast forecast;
     private String lastQuery;
+    private Disposable requestDisposable;
 
 
     public WeatherListPresenter(WeatherListView view, GetForecastInteractor interactor) {
@@ -39,8 +40,8 @@ public class WeatherListPresenter implements Observer<Forecast> {
     }
 
     @Override
-    public void onSubscribe(Disposable d) {
-
+    public void onSubscribe(Disposable requestDisposable) {
+        this.requestDisposable = requestDisposable;
     }
 
     @Override
@@ -73,6 +74,12 @@ public class WeatherListPresenter implements Observer<Forecast> {
     public void onRetryClicked() {
         if (lastQuery != null) {
             loadForecast(lastQuery);
+        }
+    }
+
+    public void onStop() {
+        if (requestDisposable != null && !requestDisposable.isDisposed()) {
+            requestDisposable.dispose();
         }
     }
 }

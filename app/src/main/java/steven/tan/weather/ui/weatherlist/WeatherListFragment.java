@@ -86,6 +86,12 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.onStop();
+    }
+
+    @Override
     public boolean onQueryTextSubmit(String query) {
         presenter.onQuerySubmitted(query);
         return true;
