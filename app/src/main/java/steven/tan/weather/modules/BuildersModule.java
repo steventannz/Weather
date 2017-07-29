@@ -7,6 +7,8 @@ import dagger.Module;
 import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
+import steven.tan.weather.component.WeatherDetailSubComponent;
+import steven.tan.weather.ui.weatherlist.WeatherDetailFragment;
 import steven.tan.weather.ui.weatherlist.WeatherListFragment;
 import steven.tan.weather.component.WeatherListSubComponent;
 
@@ -20,4 +22,9 @@ public abstract class BuildersModule {
     @IntoMap
     @FragmentKey(WeatherListFragment.class)
     abstract AndroidInjector.Factory<? extends Fragment> bindWeatherListFragmentInjectorFactory(WeatherListSubComponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(WeatherDetailFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment> bindWeatherDetailFragmentInjectorFactory(WeatherDetailSubComponent.Builder builder);
 }

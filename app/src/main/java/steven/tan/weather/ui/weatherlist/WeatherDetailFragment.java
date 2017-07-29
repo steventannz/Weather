@@ -3,22 +3,21 @@ package steven.tan.weather.ui.weatherlist;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import dagger.android.support.AndroidSupportInjection;
 import steven.tan.weather.R;
 import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class WeatherDetailFragment extends Fragment {
 
     public static final String EXTRA_LOCATION = "extra_location";
     public static final String EXTRA_WEATHER = "extra_weather";
+    private City city;
+    private Weather weather;
 
     public WeatherDetailFragment() {
     }
@@ -40,8 +39,18 @@ public class WeatherDetailFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
-        super.onAttach(context);
         Bundle arguments = getArguments();
-        Log.d("Test", arguments.toString());
+        city = arguments.getParcelable(EXTRA_LOCATION);
+        weather = arguments.getParcelable(EXTRA_WEATHER);
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Weather getWeather() {
+        return weather;
     }
 }
