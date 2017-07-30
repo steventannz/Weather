@@ -20,10 +20,14 @@ public class WeatherCondition implements Parcelable {
     @SerializedName("description")
     private final String description;
 
-    public WeatherCondition(int id, String main, String description) {
+    @SerializedName("icon")
+    private final String icon;
+
+    public WeatherCondition(int id, String main, String description, String icon) {
         this.id = id;
         this.main = main;
         this.description = description;
+        this.icon = icon;
     }
 
     public int getId() {
@@ -38,6 +42,10 @@ public class WeatherCondition implements Parcelable {
         return description;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -48,15 +56,17 @@ public class WeatherCondition implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.main);
         dest.writeString(this.description);
+        dest.writeString(this.icon);
     }
 
     protected WeatherCondition(Parcel in) {
         this.id = in.readInt();
         this.main = in.readString();
         this.description = in.readString();
+        this.icon = in.readString();
     }
 
-    public static final Parcelable.Creator<WeatherCondition> CREATOR = new Parcelable.Creator<WeatherCondition>() {
+    public static final Creator<WeatherCondition> CREATOR = new Creator<WeatherCondition>() {
         @Override
         public WeatherCondition createFromParcel(Parcel source) {
             return new WeatherCondition(source);
@@ -77,7 +87,9 @@ public class WeatherCondition implements Parcelable {
 
         if (id != that.id) return false;
         if (main != null ? !main.equals(that.main) : that.main != null) return false;
-        return description != null ? description.equals(that.description) : that.description == null;
+        if (description != null ? !description.equals(that.description) : that.description != null)
+            return false;
+        return icon != null ? icon.equals(that.icon) : that.icon == null;
     }
 
     @Override
@@ -85,6 +97,7 @@ public class WeatherCondition implements Parcelable {
         int result = id;
         result = 31 * result + (main != null ? main.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (icon != null ? icon.hashCode() : 0);
         return result;
     }
 
@@ -94,6 +107,7 @@ public class WeatherCondition implements Parcelable {
                 "id=" + id +
                 ", main='" + main + '\'' +
                 ", description='" + description + '\'' +
+                ", icon='" + icon + '\'' +
                 '}';
     }
 }

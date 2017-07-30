@@ -11,34 +11,54 @@
     android:elevation="4dp"
     app:cardCornerRadius="2dp"
     tools:context=".ui.weatherlist.WeatherListActivity">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/weather_card_style">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/layout_padding"
-            android:textSize="@dimen/title_textsize"
-            tools:text="1 Jan 2017"/>
+            style="@style/weather_card_style"
+            android:layout_weight="3">
 
-        <TextView
-            android:id="@+id/temperature"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/layout_padding"
+                android:textSize="@dimen/title_textsize"
+                tools:text="1 Jan 2017"/>
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date"
+                android:paddingBottom="@dimen/layout_padding"
+                android:textSize="14sp"
+                tools:text="8 degrees / 12 degrees"/>
+
+            <TextView
+                android:id="@+id/weather_condition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_below="@id/temperature"
+                android:paddingBottom="@dimen/layout_padding"
+                tools:text="Mostly cloudy"/>
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/layout_padding"
-            android:textSize="14sp"
-            tools:text="8 degrees / 12 degrees"/>
-
-        <TextView
-            android:id="@+id/weather_condition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="Mostly cloudy"/>
-
+            tools:src="@mipmap/ic_launcher"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="@dimen/layout_padding"
+            android:layout_weight="1"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

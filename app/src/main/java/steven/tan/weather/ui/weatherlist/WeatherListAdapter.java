@@ -6,7 +6,10 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -15,6 +18,7 @@ import butterknife.ButterKnife;
 import steven.tan.weather.R;
 import steven.tan.weather.model.Temperature;
 import steven.tan.weather.model.Weather;
+import steven.tan.weather.model.WeatherCondition;
 
 /**
  * Created by steventan on 27/07/17.
@@ -54,7 +58,12 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         String minMaxTemp = context.getString(R.string.min_max_temperature, temperature.getMin(), temperature.getMax());
         holder.temperatureText.setText(minMaxTemp);
 
-        holder.weatherConditionText.setText(weather.getWeatherCondition().get(0).getDescription());
+        WeatherCondition condition = weather.getWeatherCondition().get(0);
+        holder.weatherConditionText.setText(condition.getDescription());
+
+        Glide.with(context)
+                .load(context.getString(R.string.icon_url, condition.getIcon()))
+                .into(holder.weatherIcon);
     }
 
 
@@ -77,6 +86,8 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         @BindView(R.id.weather_condition)
         TextView weatherConditionText;
 
+        @BindView(R.id.weather_icon)
+        ImageView weatherIcon;
 
         ItemViewHolder(View itemView) {
             super(itemView);

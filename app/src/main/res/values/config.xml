@@ -2,4 +2,5 @@
 <resources>
     <string name="base_url">http://api.openweathermap.org/data/2.5/</string>
     <string name="api_key">183c4205aa61d384c11c8e5959cc6fff</string>
+    <string name="icon_url">http://openweathermap.org/img/w/%1$s.png</string>
 </resources>
