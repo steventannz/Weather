@@ -1,6 +1,7 @@
 package steven.tan.weather.ui.weatherlist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import steven.tan.weather.R;
 import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 import steven.tan.weather.presenter.WeatherListPresenter;
+import steven.tan.weather.ui.weatherdetail.WeatherDetailActivity;
 import steven.tan.weather.view.WeatherListView;
 
 
@@ -49,8 +51,6 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     @BindView(R.id.content)
     View contentLayer;
 
-    private WeatherDetailClickedListener listener;
-
     public WeatherListFragment() {
     }
 
@@ -58,10 +58,6 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
-
-        if (context instanceof WeatherDetailClickedListener) {
-            listener = (WeatherDetailClickedListener) context;
-        }
     }
 
     @Override
@@ -78,12 +74,6 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
         searchView.setOnQueryTextListener(this);
         forecastRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         retryButton.setOnClickListener(v -> presenter.onRetryClicked());
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        presenter.onActivityCreated();
     }
 
     @Override
@@ -110,7 +100,10 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
 
     @Override
     public void showWeatherDetail(City location, Weather weather) {
-        listener.onWeatherDetailClicked(location, weather);
+        Intent intent = new Intent(getActivity(), WeatherDetailActivity.class);
+        intent.putExtra(WeatherDetailActivity.EXTRA_CITY, location);
+        intent.putExtra(WeatherDetailActivity.EXTRA_WEATHER, weather);
+        startActivity(intent);
     }
 
     @Override
@@ -148,9 +141,5 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     @Override
     public void onWeatherCardClicked(int position) {
         presenter.onWeatherCardClicked(position);
-    }
-
-    public interface WeatherDetailClickedListener {
-        void onWeatherDetailClicked(City location, Weather weather);
     }
 }

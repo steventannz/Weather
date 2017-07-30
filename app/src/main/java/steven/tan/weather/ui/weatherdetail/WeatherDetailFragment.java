@@ -1,4 +1,4 @@
-package steven.tan.weather.ui.weatherlist;
+package steven.tan.weather.ui.weatherdetail;
 
 import android.content.Context;
 import android.os.Bundle;

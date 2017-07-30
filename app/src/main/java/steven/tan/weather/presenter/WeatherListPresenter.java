@@ -23,10 +23,6 @@ public class WeatherListPresenter implements Observer<Forecast> {
         this.interactor = interactor;
     }
 
-    public void onActivityCreated() {
-        updateViewForecast();
-    }
-
     public void onQuerySubmitted(String query) {
         this.lastQuery = query;
         loadForecast(query);
@@ -47,13 +43,7 @@ public class WeatherListPresenter implements Observer<Forecast> {
     @Override
     public void onNext(Forecast forecast) {
         this.forecast = forecast;
-        updateViewForecast();
-    }
-
-    private void updateViewForecast() {
-        if (forecast != null) {
-            view.setWeatherForecast(forecast.getWeather());
-        }
+        view.setWeatherForecast(forecast.getWeather());
     }
 
     @Override

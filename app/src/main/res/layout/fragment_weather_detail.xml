@@ -9,7 +9,7 @@
     android:paddingStart="@dimen/layout_padding"
     android:paddingEnd="@dimen/layout_padding"
     android:orientation="vertical"
-    tools:context="steven.tan.weather.ui.weatherlist.WeatherDetailFragment">
+    tools:context="steven.tan.weather.ui.weatherdetail.WeatherDetailFragment">
 
     <TextView
         android:id="@+id/location"

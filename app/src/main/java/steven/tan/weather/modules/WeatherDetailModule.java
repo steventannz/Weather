@@ -6,7 +6,7 @@ import dagger.Provides;
 import steven.tan.weather.model.City;
 import steven.tan.weather.model.Weather;
 import steven.tan.weather.presenter.WeatherDetailPresenter;
-import steven.tan.weather.ui.weatherlist.WeatherDetailFragment;
+import steven.tan.weather.ui.weatherdetail.WeatherDetailFragment;
 import steven.tan.weather.view.WeatherDetailView;
 
 /**
