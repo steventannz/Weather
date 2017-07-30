@@ -25,7 +25,7 @@ public class WeatherDetailPresenter {
         view.setDate(weather.getDate());
         view.setTemperature(weather.getTemperature().getMin(), weather.getTemperature().getMax());
         view.setWeatherCondition(weather.getWeatherCondition().get(0).getMain());
-        view.setWindDirection(weather.getWindDirectionText());
+        view.setWindDirection(weather.getWindDirection());
         view.setHumidity(weather.getHumidity());
     }
 }

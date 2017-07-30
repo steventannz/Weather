@@ -9,4 +9,14 @@
     <string name="enter_a_city">Enter a city</string>
     <string name="retry">Retry</string>
     <string name="generic_error">Could not load weather. Please try again</string>
+
+    <!--Direction enum-->
+    <string name="NORTH">North</string>
+    <string name="NORTH_EAST">Northeast</string>
+    <string name="EAST">East</string>
+    <string name="SOUTH_EAST">Southeast</string>
+    <string name="SOUTH">South</string>
+    <string name="SOUTH_WEST">Southwest</string>
+    <string name="WEST">West</string>
+    <string name="NORTH_WEST">Northwest</string>
 </resources>

@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.AndroidSupportInjection;
 import steven.tan.weather.R;
 import steven.tan.weather.model.City;
+import steven.tan.weather.model.Direction;
 import steven.tan.weather.model.Weather;
 import steven.tan.weather.presenter.WeatherDetailPresenter;
 import steven.tan.weather.view.WeatherDetailView;
@@ -121,8 +122,11 @@ public class WeatherDetailFragment extends Fragment implements WeatherDetailView
     }
 
     @Override
-    public void setWindDirection(String windDirection) {
-        windDirectionText.setText(getString(R.string.wind_direction, windDirection));
+    public void setWindDirection(Direction windDirection) {
+        String direction = getString(getResources().getIdentifier(windDirection.name(),
+                "string", getActivity().getPackageName()));
+
+        windDirectionText.setText(getString(R.string.wind_direction, direction));
     }
 
     @Override

@@ -2,6 +2,8 @@ package steven.tan.weather.view;
 
 import java.util.Date;
 
+import steven.tan.weather.model.Direction;
+
 /**
  * Created by steventan on 29/07/17.
  */
@@ -15,7 +17,7 @@ public interface WeatherDetailView {
 
     void setWeatherCondition(String weatherCondition);
 
-    void setWindDirection(String windDirectionText);
+    void setWindDirection(Direction windDirectionText);
 
     void setHumidity(double humidity);
 }
