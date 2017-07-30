@@ -49,6 +49,11 @@ public class Weather implements Parcelable {
         return windDirection;
     }
 
+    public String getWindDirectionText() {
+        String directions[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
+        return directions[ (int)Math.round((  (windDirection % 360) / 45)) % 8 ];
+    }
+
     public double getHumidity() {
         return humidity;
     }

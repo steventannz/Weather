@@ -2,7 +2,9 @@
     <string name="app_name">Weather</string>
     <string name="title_activity_weather_list">Weather</string>
     <string name="action_settings">Settings</string>
-    <string name="min_max_temperature">%1$.1f° / %2$.1f°</string>
+    <string name="min_max_temperature">Low: %1$.1f° / High: %2$.1f°</string>
+    <string name="wind_direction">Wind direction: %1$s</string>
+    <string name="humidity">Humidity: %1$.1f%%</string>
     <string name="title_activity_weather_detail">WeatherDetailActivity</string>
     <string name="enter_a_city">Enter a city</string>
     <string name="retry">Retry</string>

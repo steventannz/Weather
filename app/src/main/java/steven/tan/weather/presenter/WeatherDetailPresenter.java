@@ -19,4 +19,13 @@ public class WeatherDetailPresenter {
         this.city = city;
         this.weather = weather;
     }
+
+    public void onActivityCreated() {
+        view.setLocation(city.getName());
+        view.setDate(weather.getDate());
+        view.setTemperature(weather.getTemperature().getMin(), weather.getTemperature().getMax());
+        view.setWeatherCondition(weather.getWeatherCondition().get(0).getMain());
+        view.setWindDirection(weather.getWindDirectionText());
+        view.setHumidity(weather.getHumidity());
+    }
 }
