@@ -85,6 +85,7 @@ public class WeatherListFragment extends Fragment implements WeatherListView,
     @Override
     public boolean onQueryTextSubmit(String query) {
         presenter.onQuerySubmitted(query);
+        searchView.clearFocus();
         return true;
     }
 
